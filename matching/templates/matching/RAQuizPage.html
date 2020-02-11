@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Wait
+{% endblock %}
+
+{% block content %}
+    <p> Another group is currently participating in the experiment. And your participation depends on their results.
+    Please wait until you are called. </p>
+
+    <p>At the mean time, please answer the following questions:</p>
+
+    {% formfields %}
+
+    {% next_button %}
+
+    {% include Constants.instructions_template_5 %}
+
+{% endblock %}

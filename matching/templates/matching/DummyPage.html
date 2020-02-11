@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Wait
+{% endblock %}
+
+{% block content %}
+    <p>
+        It is not your turn to participate in the experiment yet. Please wait until other participants finish.
+    </p>
+
+    <p>
+        Please do not click the next button before you are signaled to do so.
+    </p>
+
+
+    {% next_button %}
+{% endblock %}
+

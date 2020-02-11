@@ -1,0 +1,16 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Give advice 5
+{% endblock %}
+
+{% block content %}
+    {% formfield player.advice_5 %}
+
+    {% formfield player.verbal_5 %}
+
+    {% next_button %}
+
+    {% include Constants.instructions_template_4 %}
+{% endblock %}

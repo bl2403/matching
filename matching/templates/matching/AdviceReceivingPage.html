@@ -1,0 +1,46 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Here is your advice
+{% endblock %}
+
+{% block content %}
+<p> You receive the following {{ num_adv }} pieces of advice:</p>
+
+    {% if player.num_adv == 1 %}
+        <p> {{ intro_1 }} </p>
+        <p> <h>Suggested Strategy</h>: {{ first_advice }} </p>
+        <p> <h>Verbal Reasoning</h>: {{ first_verbal }} </p>
+
+
+    {% elif player.num_adv == 2 %}
+        <p> {{ intro_1 }} </p>
+        <p> <h>Suggested Strategy</h>: {{ first_advice }}
+        <p> <h>Verbal Reasoning</h>: {{ first_verbal }}
+
+        <p> {{ intro_2 }} </p>
+        <p> <h>Suggested Strategy</h>: {{ second_advice }} </p>
+        <p> <h>verbal Reasoning</h>: {{ second_verbal }} </p>
+
+
+    {% else %}
+        <p> {{ intro_1 }} </p>
+        <p> <h>Suggested Strategy</h>: {{ first_advice }} </p>
+        <p> <h>Verbal Reasoning</h>: {{ first_verbal }} </p>
+
+        <p>{{ intro_2 }}
+        <p> <h>Suggested Strategy</h>: {{ second_advice }} </p>
+        <p> <h>Verbal Reasoning</h>: {{ second_verbal }} </p>
+
+        <p>{{ intro_3 }} </p>
+        <p> <h>Suggested Strategy</h>: {{ third_advice }} </p>
+        <p> <h>Verbal Reasoning</h>: {{ third_verbal }} </p>
+
+    {% endif %}
+
+    {% next_button %}
+
+{% include Constants.instructions_template_3 %}
+
+{% endblock %}

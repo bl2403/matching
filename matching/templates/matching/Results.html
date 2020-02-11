@@ -1,0 +1,17 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Result
+{% endblock %}
+
+{% block content %}
+    You are matched with School {{ matching_1 }} in the first round and School {{ matching_2 }} in the second round. The
+paying round is {{ paying_round }} and in that round you are matched with your {{ favorite }} favorite school.
+Therefore, your final payoff is {{ payoff }}.
+
+
+    {% next_button %}
+{% endblock %}
+
+

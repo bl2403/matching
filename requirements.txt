@@ -1,0 +1,4 @@
+-r requirements_base.txt
+psycopg2>=2.5.1
+
+boto3

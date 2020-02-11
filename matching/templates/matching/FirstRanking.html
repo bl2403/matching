@@ -1,0 +1,26 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    School Matching Round 1
+{% endblock %}
+
+{% block content %}
+    <p>You are <strong>Type {{ preference_type }}</strong>.
+        In other words, your preference over the schools is {{ player_preference }}, and {{ player_priority_right }}. </p>
+
+    <p>
+        Now please consider carefully and answer the following question:
+    </p>
+
+    {% formfield player.first_choice_r1 label="Your first school choice is: " %}
+
+    {% formfield player.second_choice_r1 label="Your second school choice is: " %}
+
+    {% formfield player.third_choice_r1 label="Your third school choice is: " %}
+
+    {% next_button %}
+
+    {% include Constants.instructions_template_1 %}
+
+{% endblock %}

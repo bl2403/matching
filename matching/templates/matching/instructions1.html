@@ -1,0 +1,106 @@
+{% load otree %}
+
+<div class="card bg-light instructions">
+    <div class="card-body">
+
+    <h3>
+        Instructions
+    </h3>
+
+        <p>
+            Your are participating in an experiment that models students' school choice under a particular matching
+        algorithm. You are in a group with 4 other subjects. There are three schools in total: Schools A, B, and C.
+        Schools A and B each accept 2 students, whereas school A can only accept 1 student.
+        </p>
+
+        <p>
+            You will be given a preference over these schools: if you are matched with your first choice in the paying
+        round, then you will receive 24 ECU (Experimental Currency Unit), which can be converted to U.S. Dollars at
+        the ratio of 1:0.8. Similarly, if you are matched with your second or third most preferred schools in the
+        paying round, then you will receive 16 ECU or 8 ECU, respectively. For example, if your preference is given
+        as School A over B over C, and you are matched with School B in the paying round, then you will receive 16
+        ECU as the payoff from being matched to your second favorite school. You will participate in the school
+        matching problem twice, and the paying round is randomly selected from the two rounds you participate in
+        school matching. Therefore, you should participate in both rounds according to the best of your ability.
+        </p>
+
+        <p>
+            In addition to your preferences over schools, the schools also assign ``priority rights" to certain students.
+        Suppose a school gives priority right to a student, then the school will accept that student over any
+        students without priority right from that school.
+        </p>
+
+        <p>
+            To participate in school matching, you will be asked to submit a ranking of the three schools during the
+        experiment. Notice that the ranking you submit does not need to be your true preference, though it could be.
+        In other words, you are free to submit the ranking of School B, A, C even if your true preference is, say,
+        School A, B, C.
+        </p>
+
+        <p>
+            After collecting school ranking submissions from all 5 subjects in your group, an algorithm, called the
+        Deferred Acceptance Algorithm (DAA), will be run to determine the final matching between the students and
+        schools. DAA works in the following manner:
+        </p>
+
+        <p>
+            (Step 1) The computer will randomly generate a ranking of all subjects which will later serve as the single
+        tie-breaker, if necessary.
+        </p>
+
+        <p>
+            (Step 1) The computer will randomly generate a ranking of all subjects which will later serve as the single
+        tie-breaker, if necessary.
+        </p>
+
+        <p>
+            (Step 2) The computer gathers all the rankings submitted by the subjects and then takes each subject's
+            first ranked choice and make an application for him or her to that school.
+        </p>
+
+        <p>
+            (Step 3) For each school, if the number of applicants is less than or equal to the available number of
+            seats in the school, all applicants will be temporarily matched to that school. Otherwise, the
+            school will temporarily accept subjects by using their priority rankings from the highest to
+            lowest until all seats are taken. If two applicants have the same priority ranking, then the tie-breaker
+            will be used and the subjects with higher tie-breaking number will be admitted first. Low priority
+            applicants or low tie-breaking applicants in excess of the number of seats will be left unmatched
+            temporarily.
+        </p>
+
+        <p>
+            (Step 4) If at the end of the first round all subjects are matched to schools, the temporary assignment
+            outcome will be finalized and the mechanism terminates. If there are any unmatched subjects, a second
+            round starts where all unmatched subjects are sent to their second ranked schools.
+        </p>
+
+        <p>
+            (Step 5) For each school that receive new applicants, the computer compares the number of its remaining
+            seats with that of new applicants. If the remaining seats are more than the number of new applicants, all
+            new applicants are temporarily matched to that school. Otherwise, these new applicants will be pooled
+            together with the subjects who are currently matched to that school from the previous round. Among these
+            new applicants and matched applicants, the school will temporarily accept applicants again by using their
+            priority ranking and tie-breaking ranking from the highest to the lowest until all available seats in the
+            school are exhausted. Note, it is possible that a subject was temporarily matched to the school in the
+            previous round but is left unmatched in this round, because his priority or tie-breaking lottery is not
+            high enough and he gets replaced by a new applicant with higher priority or tie-breaking number.
+        </p>
+
+        <p>
+            (Step 6) At the end of the second round, if all subjects are matched with a school, then the temporary
+            matching outcome will be finalized and the mechanism is terminated. However, if there are still unmatched
+            subjects, then a third round will start where all unmatched subjects are sent to their next ranked school.
+        </p>
+
+        <p>
+            (Step 7) This process is repeated until all subjects are matched with a school. Then the temporary
+            matching outcome finalizes and the matching mechanism terminates.
+        </p>
+
+        <p>
+            The detail of the DAA mechanism along with the rest of the instruction will still be available to you
+            throughout the experiment.
+        </p>
+
+        <div>
+</div>

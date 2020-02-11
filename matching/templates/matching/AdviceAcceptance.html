@@ -1,0 +1,20 @@
+{% extends "global/Page.html" %}
+{% load otree static %}
+
+{% block title %}
+    Advice Acceptance
+{% endblock %}
+
+{% block content %}
+    <p><b>Do you wish to seek advice?</b></p>
+
+    <div>
+        <button name="advice_acceptance" value="True" class="btn btn-primary btn-large">Yes</button>
+        <button name="advice_acceptance" value="False" class="btn btn-primary btn-large">No</button>
+    </div>
+
+
+{% include Constants.instructions_template_2 %}
+
+{% endblock %}
+
