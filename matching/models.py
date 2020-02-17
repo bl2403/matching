@@ -115,6 +115,7 @@ class Subsession(BaseSubsession):
             result = client.get_object(Bucket=BUCKET, Key=FILE_TO_READ)
             text = result["Body"].read().decode()
             all_advice = json.loads(text)
+            print(all_advice)
 
             if self.round_number == 1:
                 for index, player in enumerate(self.get_players()):
