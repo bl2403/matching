@@ -5,7 +5,7 @@ from .models import Constants
 
 class Introduction(Page):
 
-    timeout_seconds = 300
+    pass
 
 
 class FirstRanking(Page):

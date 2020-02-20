@@ -40,7 +40,7 @@
         <p> <h>verbal Reasoning</h>: {{ second_verbal }} </p>
 
 
-    {% else %}
+    {% elif player.num_adv == 3 %}
         <p> {{ intro_1 }} </p>
         <p> <h>Suggested Strategy</h>: {{ first_advice }} </p>
         <p> <h>Verbal Reasoning</h>: {{ first_verbal }} </p>
@@ -52,6 +52,11 @@
         <p>{{ intro_3 }} </p>
         <p> <h>Suggested Strategy</h>: {{ third_advice }} </p>
         <p> <h>Verbal Reasoning</h>: {{ third_verbal }} </p>
+
+    {% else %}
+        <p>
+            You did not receive any advice.
+        </p>
 
     {% endif %}
 

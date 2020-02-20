@@ -89,7 +89,7 @@ class Constants(BaseConstants):
         'This is a piece of advice given by a subject of a different preference type as you from the previous session.',
         'The following is an example of advice often given by matching administrators, such as the Department of '
         'Education of a particular city.',
-        'The following is an example of advice often found in a newspaper or by word of mouth or an online forum.'
+        # 'The following is an example of advice often found in a newspaper or by word of mouth or an online forum.'
     ]
 
     lottery = [1, 2, 3, 4, 5]
@@ -216,7 +216,10 @@ class Group(BaseGroup):
         for i in range(Constants.players_per_group):
             # Determine the number of advice
             p = self.get_player_by_id(i+1)
-            p.num_adv = random.randint(1, 3)
+            if p.advice_acceptance:
+                p.num_adv = random.randint(1, 3)
+            else:
+                p.num_adv = 0
 
             # Should the subject receive advice from other types, determine the advice giver type
             other_types = []
@@ -255,10 +258,9 @@ class Group(BaseGroup):
                     else:
                         p.first_advice = third_party_advice
                         p.first_verbal = self.session.config['third_party']
-                        if int(self.session.config['generation_number']) % 2 == 1:
-                            p.intro_1 = Constants.advice_description[2]
-                        else:
-                            p.intro_1 = Constants.advice_description[3]
+
+                        p.intro_1 = Constants.advice_description[2]
+
                 elif p.num_adv == 2:
                     print(p.q1)
                     print(p.q1[2])
@@ -279,11 +281,8 @@ class Group(BaseGroup):
 
                         p.second_advice = third_party_advice
                         p.second_verbal = self.session.config['third_party']
+                        p.intro_2 = Constants.advice_description[2]
 
-                        if int(self.session.config['generation_number']) % 2 == 1:
-                            p.intro_2 = Constants.advice_description[2]
-                        else:
-                            p.intro_2 = Constants.advice_description[3]
                     else:
                         p.first_advice = p.participant.vars['all_advice'][str(i+1)][str(i+1)]["advice"]
                         p.first_verbal = p.participant.vars['all_advice'][str(i+1)][str(i+1)]["verbal"]
@@ -291,10 +290,7 @@ class Group(BaseGroup):
 
                         p.second_advice = third_party_advice
                         p.second_verbal = self.session.config['third_party']
-                        if int(self.session.config['generation_number']) % 2 == 1:
-                            p.intro_2 = Constants.advice_description[2]
-                        else:
-                            p.intro_2 = Constants.advice_description[3]
+                        p.intro_2 = Constants.advice_description[2]
                 else:
                     p.first_advice = p.participant.vars['all_advice'][str(i+1)][str(i+1)]["advice"]
                     p.first_verbal = p.participant.vars['all_advice'][str(i+1)][str(i+1)]["verbal"]
@@ -306,10 +302,7 @@ class Group(BaseGroup):
 
                     p.third_advice = third_party_advice
                     p.third_verbal = self.session.config['third_party']
-                    if int(self.session.config['generation_number']) % 2 == 1:
-                        p.intro_3 = Constants.advice_description[2]
-                    else:
-                        p.intro_3 = Constants.advice_description[3]
+                    p.intro_3 = Constants.advice_description[2]
 
     def set_payoff(self):
         players = self.get_players()

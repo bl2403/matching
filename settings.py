@@ -17,7 +17,7 @@ SESSION_CONFIGS = [
         'display_name': "Matching",
         'num_demo_participants': 5,
         'app_sequence': ['matching'],
-        'third_party': 'You should report your true preference over the schools, because Gale-Shapeley\'s deferred '
+        'third_party': 'You should report your true preference over the schools, because Gale-Shapeley deferred '
                        'acceptance mechanism is strategy-proof, which means regardless of what other people do, '
                        'you can do no better than reporting your true preference',
         'generation_number': '0',
