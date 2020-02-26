@@ -35,7 +35,7 @@ USE_POINTS = True
 
 ROOMS = [
     dict(
-        name='econ_lab',
+        name='cess_lab',
         display_name='CESS Lab',
     ),
 ]
