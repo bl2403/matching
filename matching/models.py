@@ -94,9 +94,9 @@ class Constants(BaseConstants):
 
     lottery = [1, 2, 3, 4, 5]
 
-    high_payoff = c(24)
-    medium_payoff = c(16)
-    low_payoff = c(8)
+    high_payoff = 24
+    medium_payoff = 16
+    low_payoff = 8
 
 
 class Subsession(BaseSubsession):
@@ -150,6 +150,7 @@ class Subsession(BaseSubsession):
 
 class Group(BaseGroup):
     paying_round = models.IntegerField()
+
 
     def matching(self, rankings):
         # rankings is a list of lists, where the first entry is the submitted ranking of the type 1 subject
@@ -251,10 +252,12 @@ class Group(BaseGroup):
                         p.first_advice = p.participant.vars['all_advice'][str(i+1)][str(i+1)]["advice"]
                         p.first_verbal = p.participant.vars['all_advice'][str(i+1)][str(i+1)]["verbal"]
                         p.intro_1 = Constants.advice_description[0]
+                        p.advice_giver_1 = int(p.id_in_group)
                     elif p.one_advice == Constants.Advice_Sources_1[1]:
                         p.first_advice = p.participant.vars['all_advice'][str(advice_giver + 1)][str(i+1)]["advice"]
                         p.first_verbal = p.participant.vars['all_advice'][str(advice_giver + 1)][str(i+1)]["verbal"]
                         p.intro_1 = Constants.advice_description[1]
+                        p.advice_giver_1 = advice_giver+1
                     else:
                         p.first_advice = third_party_advice
                         p.first_verbal = self.session.config['third_party']
@@ -270,14 +273,17 @@ class Group(BaseGroup):
                         p.first_advice = p.participant.vars['all_advice'][str(i+1)][str(i+1)]["advice"]
                         p.first_verbal = p.participant.vars['all_advice'][str(i+1)][str(i+1)]["verbal"]
                         p.intro_1 = Constants.advice_description[0]
+                        p.advice_giver_1 = p.id_in_group
 
                         p.second_advice = p.participant.vars['all_advice'][str(advice_giver + 1)][str(i+1)]["advice"]
                         p.second_verbal = p.participant.vars['all_advice'][str(advice_giver + 1)][str(i+1)]["verbal"]
                         p.intro_2 = Constants.advice_description[1]
+                        p.advice_giver_2 = advice_giver + 1
                     elif p.q1[2] == '2' and p.q1[7] == '3':
                         p.first_advice = p.participant.vars['all_advice'][str(advice_giver + 1)][str(i+1)]["advice"]
                         p.first_verbal = p.participant.vars['all_advice'][str(advice_giver + 1)][str(i+1)]["verbal"]
                         p.intro_1 = Constants.advice_description[1]
+                        p.advice_giver_1 = advice_giver+1
 
                         p.second_advice = third_party_advice
                         p.second_verbal = self.session.config['third_party']
@@ -287,6 +293,7 @@ class Group(BaseGroup):
                         p.first_advice = p.participant.vars['all_advice'][str(i+1)][str(i+1)]["advice"]
                         p.first_verbal = p.participant.vars['all_advice'][str(i+1)][str(i+1)]["verbal"]
                         p.intro_1 = Constants.advice_description[0]
+                        p.advice_giver_1 = p.id_in_group
 
                         p.second_advice = third_party_advice
                         p.second_verbal = self.session.config['third_party']
@@ -295,10 +302,12 @@ class Group(BaseGroup):
                     p.first_advice = p.participant.vars['all_advice'][str(i+1)][str(i+1)]["advice"]
                     p.first_verbal = p.participant.vars['all_advice'][str(i+1)][str(i+1)]["verbal"]
                     p.intro_1 = Constants.advice_description[0]
+                    p.advice_giver_1 = p.id_in_group
 
                     p.second_advice = p.participant.vars['all_advice'][str(advice_giver + 1)][str(i+1)]["advice"]
                     p.second_verbal = p.participant.vars['all_advice'][str(advice_giver + 1)][str(i+1)]["verbal"]
                     p.intro_2 = Constants.advice_description[1]
+                    p.advice_giver_2 = advice_giver+1
 
                     p.third_advice = third_party_advice
                     p.third_verbal = self.session.config['third_party']
@@ -342,6 +351,19 @@ class Group(BaseGroup):
                 players[i].final_payoff = payoff_r1[i]
             else:
                 players[i].final_payoff = payoff_r2[i]
+
+    def set_advisor_payoff(self):
+        for i in range(1, Constants.players_per_group+1):
+            advice_receivers = []
+            for j in range(1, Constants.players_per_group+1):
+                p = self.get_player_by_id(j)
+                if p.advice_giver_1 == i or p.advice_giver_2 == i:
+                    advice_receivers.append(j)
+            if len(advice_receivers) != 0:
+                successor = random.choice(advice_receivers)
+                self.get_player_by_id(i).payoff_for_predecessor = self.get_player_by_id(successor).final_payoff*0.5
+            else:
+                self.get_player_by_id(i).payoff_for_predecessor = 0.0
 
     def set_advice(self):
         all_advice = {}
@@ -439,6 +461,10 @@ class Player(BasePlayer):
     intro_2 = models.StringField()
     intro_3 = models.StringField()
 
+    # Identify advice giver
+    advice_giver_1 = models.IntegerField()
+    advice_giver_2 = models.IntegerField()
+
     # For school choice problem second round
     first_choice_r2 = models.StringField(
         choices=Constants.Schools,
@@ -457,11 +483,12 @@ class Player(BasePlayer):
     )
 
     # For payoff setting
-    payoff_1 = models.CurrencyField()
-    payoff_2 = models.CurrencyField()
+    payoff_1 = models.FloatField()
+    payoff_2 = models.FloatField()
+    payoff_for_predecessor = models.FloatField()
 
     # For results
-    final_payoff = models.CurrencyField()
+    final_payoff = models.FloatField()
     match_1 = models.StringField()
     match_2 = models.StringField()
 

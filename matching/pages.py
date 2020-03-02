@@ -155,6 +155,7 @@ class SecondRanking(Page):
 class ResultsWaitPage3(WaitPage):
     def after_all_players_arrive(self):
         self.group.set_payoff()
+        self.group.set_advisor_payoff()
 
 
 class Results(Page):
