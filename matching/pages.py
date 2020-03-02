@@ -261,9 +261,9 @@ page_sequence = [
     AdviceGivingPage3,
     AdviceGivingPage4,
     AdviceGivingPage5,
-    # Introduction3,
-    # PersonalInfo,
-    # RAQuizPage,
-    # CognitiveReflectionTest,
+    Introduction3,
+    PersonalInfo,
+    RAQuizPage,
+    CognitiveReflectionTest,
     End,
 ]
