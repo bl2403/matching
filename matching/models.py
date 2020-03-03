@@ -115,7 +115,6 @@ class Subsession(BaseSubsession):
             result = client.get_object(Bucket=BUCKET, Key=FILE_TO_READ)
             text = result["Body"].read().decode()
             all_advice = json.loads(text)
-            print(all_advice)
 
             if self.round_number == 1:
                 for index, player in enumerate(self.get_players()):
@@ -352,18 +351,23 @@ class Group(BaseGroup):
             else:
                 players[i].final_payoff = payoff_r2[i]
 
+            players[i].final_payoff_in_dollars = players[i].final_payoff * 0.8
+
     def set_advisor_payoff(self):
         for i in range(1, Constants.players_per_group+1):
             advice_receivers = []
+            player = self.get_player_by_id(i)
             for j in range(1, Constants.players_per_group+1):
                 p = self.get_player_by_id(j)
                 if p.advice_giver_1 == i or p.advice_giver_2 == i:
                     advice_receivers.append(j)
             if len(advice_receivers) != 0:
                 successor = random.choice(advice_receivers)
-                self.get_player_by_id(i).payoff_for_predecessor = self.get_player_by_id(successor).final_payoff*0.5
+                player.payoff_for_predecessor = self.get_player_by_id(successor).final_payoff*0.5
             else:
-                self.get_player_by_id(i).payoff_for_predecessor = 0.0
+                player.payoff_for_predecessor = 0.0
+
+            player.payoff_for_predecessor_in_dollars = player.payoff_for_predecessor * 0.8
 
     def set_advice(self):
         all_advice = {}
@@ -486,9 +490,11 @@ class Player(BasePlayer):
     payoff_1 = models.FloatField()
     payoff_2 = models.FloatField()
     payoff_for_predecessor = models.FloatField()
+    payoff_for_predecessor_in_dollars = models.FloatField()
 
     # For results
     final_payoff = models.FloatField()
+    final_payoff_in_dollars = models.FloatField()
     match_1 = models.StringField()
     match_2 = models.StringField()
 

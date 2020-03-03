@@ -6,6 +6,8 @@
 {% endblock %}
 
 {% block content %}
+<p>You are <strong>Type {{ preference_type }}</strong>.
+        In other words, your preference over the schools is {{ player_preference }}, and {{ player_priority_right }}. </p>
     {% formfield player.advice_2 %}
 
     {% formfield player.verbal_2 %}

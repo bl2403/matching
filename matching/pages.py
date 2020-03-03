@@ -184,25 +184,155 @@ class AdviceGivingPage1(Page):
     form_model = 'player'
     form_fields = ['advice_1', 'verbal_1']
 
+    def vars_for_template(self):
+        if self.player.id_in_group == 1:
+            priority_right = "you receive priority rights from School C"
+            preference = "You prefer School C over School A over School B"
+
+        elif self.player.id_in_group == 2:
+            priority_right = "you receive priority rights from School A"
+            preference = "You prefer School C over School A over School B"
+
+        elif self.player.id_in_group == 3:
+            priority_right = "you receive priority rights from School B"
+            preference = "You prefer School C over School B over School A"
+
+        elif self.player.id_in_group == 4:
+            priority_right = "you do not have priority rights from any school"
+            preference = "You prefer School A over School B over School C"
+        else:
+            priority_right = "you do not have priority rights from any school"
+            preference = "You prefer School A over School C over School B"
+
+        return dict(
+            preference_type=self.player.id_in_group,
+            player_preference=preference,
+            player_priority_right=priority_right
+        )
+
 
 class AdviceGivingPage2(Page):
     form_model = 'player'
     form_fields = ['advice_2', 'verbal_2']
+
+    def vars_for_template(self):
+        if self.player.id_in_group == 1:
+            priority_right = "you receive priority rights from School C"
+            preference = "You prefer School C over School A over School B"
+
+        elif self.player.id_in_group == 2:
+            priority_right = "you receive priority rights from School A"
+            preference = "You prefer School C over School A over School B"
+
+        elif self.player.id_in_group == 3:
+            priority_right = "you receive priority rights from School B"
+            preference = "You prefer School C over School B over School A"
+
+        elif self.player.id_in_group == 4:
+            priority_right = "you do not have priority rights from any school"
+            preference = "You prefer School A over School B over School C"
+        else:
+            priority_right = "you do not have priority rights from any school"
+            preference = "You prefer School A over School C over School B"
+
+        return dict(
+            preference_type=self.player.id_in_group,
+            player_preference=preference,
+            player_priority_right=priority_right
+        )
 
 
 class AdviceGivingPage3(Page):
     form_model = 'player'
     form_fields = ['advice_3', 'verbal_3']
 
+    def vars_for_template(self):
+        if self.player.id_in_group == 1:
+            priority_right = "you receive priority rights from School C"
+            preference = "You prefer School C over School A over School B"
+
+        elif self.player.id_in_group == 2:
+            priority_right = "you receive priority rights from School A"
+            preference = "You prefer School C over School A over School B"
+
+        elif self.player.id_in_group == 3:
+            priority_right = "you receive priority rights from School B"
+            preference = "You prefer School C over School B over School A"
+
+        elif self.player.id_in_group == 4:
+            priority_right = "you do not have priority rights from any school"
+            preference = "You prefer School A over School B over School C"
+        else:
+            priority_right = "you do not have priority rights from any school"
+            preference = "You prefer School A over School C over School B"
+
+        return dict(
+            preference_type=self.player.id_in_group,
+            player_preference=preference,
+            player_priority_right=priority_right
+        )
+
 
 class AdviceGivingPage4(Page):
     form_model = 'player'
     form_fields = ['advice_4', 'verbal_4']
 
+    def vars_for_template(self):
+        if self.player.id_in_group == 1:
+            priority_right = "you receive priority rights from School C"
+            preference = "You prefer School C over School A over School B"
+
+        elif self.player.id_in_group == 2:
+            priority_right = "you receive priority rights from School A"
+            preference = "You prefer School C over School A over School B"
+
+        elif self.player.id_in_group == 3:
+            priority_right = "you receive priority rights from School B"
+            preference = "You prefer School C over School B over School A"
+
+        elif self.player.id_in_group == 4:
+            priority_right = "you do not have priority rights from any school"
+            preference = "You prefer School A over School B over School C"
+        else:
+            priority_right = "you do not have priority rights from any school"
+            preference = "You prefer School A over School C over School B"
+
+        return dict(
+            preference_type=self.player.id_in_group,
+            player_preference=preference,
+            player_priority_right=priority_right
+        )
+
 
 class AdviceGivingPage5(Page):
     form_model = 'player'
     form_fields = ['advice_5', 'verbal_5']
+
+    def vars_for_template(self):
+        if self.player.id_in_group == 1:
+            priority_right = "you receive priority rights from School C"
+            preference = "You prefer School C over School A over School B"
+
+        elif self.player.id_in_group == 2:
+            priority_right = "you receive priority rights from School A"
+            preference = "You prefer School C over School A over School B"
+
+        elif self.player.id_in_group == 3:
+            priority_right = "you receive priority rights from School B"
+            preference = "You prefer School C over School B over School A"
+
+        elif self.player.id_in_group == 4:
+            priority_right = "you do not have priority rights from any school"
+            preference = "You prefer School A over School B over School C"
+        else:
+            priority_right = "you do not have priority rights from any school"
+            preference = "You prefer School A over School C over School B"
+
+        return dict(
+            preference_type=self.player.id_in_group,
+            player_preference=preference,
+            player_priority_right=priority_right
+        )
 
     def before_next_page(self):
         key = 'player_{}'.format(self.player.id_in_group)
