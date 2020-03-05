@@ -43,6 +43,14 @@ class FirstRanking(Page):
             player_priority_right=priority_right
         )
 
+    def before_next_page(self):
+        key = 'player_{}'.format(self.player.id_in_group)
+        self.session.vars[key] = {
+            'first_choice_r1': self.player.first_choice_r1,
+            'second_choice_r1': self.player.second_choice_r1,
+            'third_choice_r1': self.player.third_choice_r1,
+        }
+
 
 class ResultsWaitPage1(WaitPage):
     def after_all_players_arrive(self):
@@ -149,6 +157,16 @@ class SecondRanking(Page):
             second_verbal=self.player.second_verbal,
             third_advice=self.player.third_advice,
             third_verbal=self.player.third_verbal
+        )
+
+    def before_next_page(self):
+        key = 'player_{}'.format(self.player.id_in_group)
+        self.session.vars[key].update(
+            {
+                'first_choice_r2': self.player.first_choice_r2,
+                'second_choice_r2': self.player.second_choice_r2,
+                'third_choice_r2': self.player.third_choice_r2
+            }
         )
 
 
@@ -336,7 +354,7 @@ class AdviceGivingPage5(Page):
 
     def before_next_page(self):
         key = 'player_{}'.format(self.player.id_in_group)
-        self.session.vars[key] = {
+        self.session.vars[key].update({
             'advice_1': self.player.advice_1,
             'verbal_1': self.player.verbal_1,
             'advice_2': self.player.advice_2,
@@ -347,7 +365,7 @@ class AdviceGivingPage5(Page):
             'verbal_4': self.player.verbal_4,
             'advice_5': self.player.advice_5,
             'verbal_5': self.player.verbal_5
-        }
+        })
 
 
 class Introduction3(Page):
@@ -372,6 +390,7 @@ class CognitiveReflectionTest(Page):
 class End(WaitPage):
     def after_all_players_arrive(self):
         self.group.set_advice()
+        self.group.simulation()
 
 
 page_sequence = [
@@ -391,9 +410,9 @@ page_sequence = [
     AdviceGivingPage3,
     AdviceGivingPage4,
     AdviceGivingPage5,
-    Introduction3,
-    PersonalInfo,
-    RAQuizPage,
-    CognitiveReflectionTest,
+    # Introduction3,
+    # PersonalInfo,
+    # RAQuizPage,
+    # CognitiveReflectionTest,
     End,
 ]

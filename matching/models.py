@@ -150,7 +150,6 @@ class Subsession(BaseSubsession):
 class Group(BaseGroup):
     paying_round = models.IntegerField()
 
-
     def matching(self, rankings):
         # rankings is a list of lists, where the first entry is the submitted ranking of the type 1 subject
         # Tie breaker
@@ -162,13 +161,13 @@ class Group(BaseGroup):
 
         while 0 in temp_match:
             indices = [k for k, x in enumerate(temp_match) if temp_match[k] == 0]  # all unmatched students
-            print(indices)
+            # print(indices)
 
             # check application for every school
             for i in range(0, 3):
                 # students already matched to the school
                 temp_matched = [k for k, x in enumerate(temp_match) if temp_match[k] == Constants.Schools[i]]
-                print(temp_matched)
+                # print(temp_matched)
                 # rejected students who applied to the school in the current round
                 apps = [k for k in indices if rankings[k][status[k] - 1] ==
                         Constants.Schools[i]]
@@ -369,6 +368,56 @@ class Group(BaseGroup):
 
             player.payoff_for_predecessor_in_dollars = player.payoff_for_predecessor * 0.8
 
+    def simulation(self):
+        all_decision_r1 = [0, 0, 0, 0, 0]
+        all_decision_r2 = [0, 0, 0, 0, 0]
+
+        for player_id in range(1, Constants.players_per_group + 1):
+            player_key = 'player_{}'.format(player_id)
+            all_decision_r1[player_id-1] = [
+                self.session.vars[player_key]["first_choice_r1"],
+                self.session.vars[player_key]["second_choice_r1"],
+                self.session.vars[player_key]["third_choice_r1"],
+            ]
+            all_decision_r2[player_id-1] = [
+                self.session.vars[player_key]["first_choice_r2"],
+                self.session.vars[player_key]["second_choice_r2"],
+                self.session.vars[player_key]["third_choice_r2"],
+            ]
+
+        counter = 0
+        welfare_before_advice = [0.0, 0.0, 0.0, 0.0, 0.0]
+        welfare_after_advice = [0.0, 0.0, 0.0, 0.0, 0.0]
+
+        while counter < 1000:
+            sim_matching_r1 = self.matching(all_decision_r1)
+            sim_matching_r2 = self.matching(all_decision_r2)
+
+            print(sim_matching_r1)
+            print(sim_matching_r2)
+
+            for i in range(0, len(sim_matching_r1)):
+                if sim_matching_r1[i] == Constants.Preferences[i][0]:
+                    welfare_before_advice[i] = welfare_before_advice[i] + 24.0
+                elif sim_matching_r1[i] == Constants.Preferences[i][1]:
+                    welfare_before_advice[i] = welfare_before_advice[i] + 16.0
+                else:
+                    welfare_before_advice[i] = welfare_before_advice[i] + 8.0
+
+            for i in range(0, len(sim_matching_r2)):
+                if sim_matching_r2[i] == Constants.Preferences[i][0]:
+                    welfare_after_advice[i] = welfare_after_advice[i] + 24.0
+                elif sim_matching_r2[i] == Constants.Preferences[i][1]:
+                    welfare_after_advice[i] = welfare_after_advice[i] + 16.0
+                else:
+                    welfare_after_advice[i] = welfare_after_advice[i] + 8.0
+
+            counter = counter + 1
+
+        for i in range(0, Constants.players_per_group):
+            self.get_player_by_id(i+1).average_welfare_before_advice = welfare_before_advice[i]/1000
+            self.get_player_by_id(i+1).average_welfare_after_advice = welfare_after_advice[i]/1000
+
     def set_advice(self):
         all_advice = {}
         for player_id in range(1, Constants.players_per_group + 1):
@@ -497,6 +546,10 @@ class Player(BasePlayer):
     final_payoff_in_dollars = models.FloatField()
     match_1 = models.StringField()
     match_2 = models.StringField()
+
+    # Simulation Results
+    average_welfare_before_advice = models.FloatField()
+    average_welfare_after_advice = models.FloatField()
 
     # For advice giving
     advice_1 = models.StringField(
