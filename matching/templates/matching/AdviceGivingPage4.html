@@ -7,8 +7,16 @@
 
 {% block content %}
 <p>You are <strong>Type {{ preference_type }}</strong>.
-        In other words, your preference over the schools is {{ player_preference }}, and {{ player_priority_right }}. </p>
+        <br> Your preference over the objects is {{ player_preference }}.
+        <br>{{ player_priority_right }}.
+    </p>
+
+
     {% formfield player.advice_4 %}
+
+{% if player.id_in_group == 4 %}
+<strong>Notice: this subject is of your preference type.</strong>
+    {% endif %}
 
     {% formfield player.verbal_4 %}
 

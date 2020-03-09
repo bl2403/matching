@@ -228,7 +228,9 @@ class Group(BaseGroup):
             advice_giver = random.choice(other_types)
 
             # Should the subject receive third-party advice
-            third_party_advice = Constants.Preferences[i][0]+Constants.Preferences[i][1]+Constants.Preferences[i][2]
+            third_party_advice = Constants.Preferences[i][0] + ", " + Constants.Preferences[i][1] + ", " \
+                                                                                                    "" + \
+                                 Constants.Preferences[i][2]
 
             # Advice Description
             p.intro_1 = ''
@@ -555,36 +557,36 @@ class Player(BasePlayer):
     advice_1 = models.StringField(
         choices=Constants.rankings,
         doc="""suggested strategy for type 1""",
-        label="What is your suggested strategy for a subject with preferences over schools as C A B and priority right "
-              "from School C?",
+        label="What is your suggested strategy for a subject with preferences over the objects as C A B and priority "
+              "right from object C",
         widget=widgets.RadioSelectHorizontal,
     )
     advice_2 = models.StringField(
         choices=Constants.rankings,
         doc="""suggested strategy for type 2""",
-        label="What is your suggested strategy for a subject with preferences over schools as C A B and priority right "
-              "from school A",
+        label="What is your suggested strategy for a subject with preferences over the objects as C A B and priority "
+              "right from object A",
         widget=widgets.RadioSelectHorizontal,
     )
     advice_3 = models.StringField(
         choices=Constants.rankings,
         doc="""suggested strategy for type 3""",
-        label="What is your suggested strategy for a subject with preferences over schools as C B A and priority "
-              "right from school B?",
+        label="What is your suggested strategy for a subject with preferences over objects as C B A and priority "
+              "right from object B?",
         widget=widgets.RadioSelectHorizontal,
     )
     advice_4 = models.StringField(
         choices=Constants.rankings,
         doc="""suggested strategy for type 4""",
-        label="What is your suggested strategy for a subject with preferences over schools as A B C but without "
-              "priority rights from any school?",
+        label="What is your suggested strategy for a subject with preferences over objects as A B C but without "
+              "priority rights from any object?",
         widget=widgets.RadioSelectHorizontal,
     )
     advice_5 = models.StringField(
         choices=Constants.rankings,
         doc="""suggested strategy for type 5""",
-        label="What is your suggested strategy for a subject with preferences over schools as A C B but without "
-              "priority rights from any school?",
+        label="What is your suggested strategy for a subject with preferences over objects as A C B but without "
+              "priority rights from any object?",
         widget=widgets.RadioSelectHorizontal,
     )
 
@@ -653,8 +655,8 @@ class Player(BasePlayer):
     # For measuring subjects' risk aversion, taken from Holt and Laury (2002)
     ra_1 = models.StringField(
         choices=[
-            '0.1 probability of getting 2.00 ECU and 0.9 probability of getting 1.60 ECU',
-            '0.1 probability of getting 3.85 ECU and 0.9 probability of getting 0.10 ECU',
+            '0.1 chance of getting 2.00 ECU and 0.9 chance of getting 1.60 ECU',
+            '0.1 chance of getting 3.85 ECU and 0.9 chance of getting 0.10 ECU',
         ],
         label='Pick your more preferred lottery between the two',
         widget=widgets.RadioSelect
@@ -662,8 +664,8 @@ class Player(BasePlayer):
 
     ra_2 = models.StringField(
         choices=[
-            '0.2 probability of getting 2.00 ECU and 0.8 probability of getting 1.60 ECU',
-            '0.2 probability of getting 3.85 ECU and 0.8 probability of getting 0.10 ECU',
+            '0.2 chance of getting 2.00 ECU and 0.8 chance of getting 1.60 ECU',
+            '0.2 chance of getting 3.85 ECU and 0.8 chance of getting 0.10 ECU',
         ],
         label='Pick your more preferred lottery between the two',
         widget=widgets.RadioSelect
@@ -671,8 +673,8 @@ class Player(BasePlayer):
 
     ra_3 = models.StringField(
         choices=[
-            '0.3 probability of getting 2.00 ECU and 0.7 probability of getting 1.60 ECU',
-            '0.3 probability of getting 3.85 ECU and 0.7 probability of getting 0.10 ECU',
+            '0.3 chance of getting 2.00 ECU and 0.7 chance of getting 1.60 ECU',
+            '0.3 chance of getting 3.85 ECU and 0.7 chance of getting 0.10 ECU',
         ],
         label='Pick your more preferred lottery between the two',
         widget=widgets.RadioSelect
@@ -680,8 +682,8 @@ class Player(BasePlayer):
 
     ra_4 = models.StringField(
         choices=[
-            '0.4 probability of getting 2.00 ECU and 0.6 probability of getting 1.60 ECU',
-            '0.4 probability of getting 3.85 ECU and 0.6 probability of getting 0.10 ECU',
+            '0.4 chance of getting 2.00 ECU and 0.6 chance of getting 1.60 ECU',
+            '0.4 chance of getting 3.85 ECU and 0.6 chance of getting 0.10 ECU',
         ],
         label='Pick your more preferred lottery between the two',
         widget=widgets.RadioSelect
@@ -689,8 +691,8 @@ class Player(BasePlayer):
 
     ra_5 = models.StringField(
         choices=[
-            '0.5 probability of getting 2.00 ECU and 0.5 probability of getting 1.60 ECU',
-            '0.5 probability of getting 3.85 ECU and 0.5 probability of getting 0.10 ECU',
+            '0.5 chance of getting 2.00 ECU and 0.5 chance of getting 1.60 ECU',
+            '0.5 chance of getting 3.85 ECU and 0.5 chance of getting 0.10 ECU',
         ],
         label='Pick your more preferred lottery between the two',
         widget=widgets.RadioSelect
@@ -698,8 +700,8 @@ class Player(BasePlayer):
 
     ra_6 = models.StringField(
         choices=[
-            '0.6 probability of getting 2.00 ECU and 0.4 probability of getting 1.60 ECU',
-            '0.6 probability of getting 3.85 ECU and 0.4 probability of getting 0.10 ECU',
+            '0.6 chance of getting 2.00 ECU and 0.4 chance of getting 1.60 ECU',
+            '0.6 chance of getting 3.85 ECU and 0.4 chance of getting 0.10 ECU',
         ],
         label='Pick your more preferred lottery between the two',
         widget=widgets.RadioSelect
@@ -707,8 +709,8 @@ class Player(BasePlayer):
 
     ra_7 = models.StringField(
         choices=[
-            '0.7 probability of getting 2.00 ECU and 0.3 probability of getting 1.60 ECU',
-            '0.7 probability of getting 3.85 ECU and 0.3 probability of getting 0.10 ECU',
+            '0.7 chance of getting 2.00 ECU and 0.3 chance of getting 1.60 ECU',
+            '0.7 chance of getting 3.85 ECU and 0.3 chance of getting 0.10 ECU',
         ],
         label='Pick your more preferred lottery between the two',
         widget=widgets.RadioSelect
@@ -716,8 +718,8 @@ class Player(BasePlayer):
 
     ra_8 = models.StringField(
         choices=[
-            '0.8 probability of getting 2.00 ECU and 0.2 probability of getting 1.60 ECU',
-            '0.8 probability of getting 3.85 ECU and 0.2 probability of getting 0.10 ECU',
+            '0.8 chance of getting 2.00 ECU and 0.2 chance of getting 1.60 ECU',
+            '0.8 chance of getting 3.85 ECU and 0.2 chance of getting 0.10 ECU',
         ],
         label='Pick your more preferred lottery between the two',
         widget=widgets.RadioSelect
@@ -734,8 +736,8 @@ class Player(BasePlayer):
 
     ra_10 = models.StringField(
         choices=[
-            '1 probability of getting 2.00 ECU and 0 probability of getting 1.60 ECU',
-            '1 probability of getting 3.85 ECU and 0 probability of getting 0.10 ECU',
+            'Getting 2.00 ECU for sure and not getting 1.60 ECU for sure',
+            'Getting 3.85 ECU for sure and not getting 0.10 ECU for sure',
         ],
         label='Pick your more preferred lottery between the two',
         widget=widgets.RadioSelect

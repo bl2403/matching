@@ -7,30 +7,34 @@
 
 {% block content %}
     <p>You are <strong>Type {{ preference_type }}</strong>.
-        In other words, your preference over the schools is {{ player_preference }}, and {{ player_priority_right }}. </p>
+        <br>Your preference over the objects is {{ player_preference }}.
+        <br> {{ player_priority_right }}.
+    </p>
 
     <p>
         Now please consider carefully and answer the following question:
     </p>
 
-{% formfield player.first_choice_r2 label="Your first school choice is: " %}
+{% formfield player.first_choice_r2 label="Your first choice is" %}
 
-{% formfield player.second_choice_r2 label="Your second school choice is: " %}
+{% formfield player.second_choice_r2 label="Your second choice is" %}
 
-{% formfield player.third_choice_r2 label="Your third school choice is: " %}
+{% formfield player.third_choice_r2 label="Your third choice is" %}
 
-{% if player.num_adv != 0 %}
+
+{% if gen_num != 0 and player.num_adv == 1 %}
 <P>
     Here is the advice you received in the previous page:
 </P>
-{% endif %}
-{% if player.num_adv == 1 %}
-        <p> {{ intro_1 }} </p>
-        <p> <h>Suggested Strategy</h>: {{ first_advice }} </p>
-        <p> <h>Verbal Reasoning</h>: {{ first_verbal }} </p>
+    <p> {{ intro_1 }} </p>
+    <p> <h>Suggested Strategy</h>: {{ first_advice }} </p>
+    <p> <h>Verbal Reasoning</h>: {{ first_verbal }} </p>
 
 
-    {% elif player.num_adv == 2 %}
+    {% elif gen_num != 0 and player.num_adv == 2 %}
+<P>
+    Here is the advice you received in the previous page:
+</P>
         <p> {{ intro_1 }} </p>
         <p> <h>Suggested Strategy</h>: {{ first_advice }}
         <p> <h>Verbal Reasoning</h>: {{ first_verbal }}
@@ -40,7 +44,10 @@
         <p> <h>verbal Reasoning</h>: {{ second_verbal }} </p>
 
 
-    {% elif player.num_adv == 3 %}
+    {% elif gen_num != 0 and player.num_adv == 3 %}
+<P>
+    Here is the advice you received in the previous page:
+</P>
         <p> {{ intro_1 }} </p>
         <p> <h>Suggested Strategy</h>: {{ first_advice }} </p>
         <p> <h>Verbal Reasoning</h>: {{ first_verbal }} </p>
@@ -53,12 +60,14 @@
         <p> <h>Suggested Strategy</h>: {{ third_advice }} </p>
         <p> <h>Verbal Reasoning</h>: {{ third_verbal }} </p>
 
-    {% else %}
+    {% elif gen_num != 0 and player.num_adv == 0 %}
         <p>
             You did not receive any advice.
         </p>
+    {% else %}
+        <p></p>
 
-    {% endif %}
+{% endif %}
 
 
 {% next_button %}
