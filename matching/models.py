@@ -558,35 +558,35 @@ class Player(BasePlayer):
         choices=Constants.rankings,
         doc="""suggested strategy for type 1""",
         label="What is your suggested strategy for a subject with preferences over the objects as C A B and priority "
-              "right from object C",
+              "from object C",
         widget=widgets.RadioSelectHorizontal,
     )
     advice_2 = models.StringField(
         choices=Constants.rankings,
         doc="""suggested strategy for type 2""",
         label="What is your suggested strategy for a subject with preferences over the objects as C A B and priority "
-              "right from object A",
+              "from object A",
         widget=widgets.RadioSelectHorizontal,
     )
     advice_3 = models.StringField(
         choices=Constants.rankings,
         doc="""suggested strategy for type 3""",
         label="What is your suggested strategy for a subject with preferences over objects as C B A and priority "
-              "right from object B?",
+              " from object B?",
         widget=widgets.RadioSelectHorizontal,
     )
     advice_4 = models.StringField(
         choices=Constants.rankings,
         doc="""suggested strategy for type 4""",
         label="What is your suggested strategy for a subject with preferences over objects as A B C but without "
-              "priority rights from any object?",
+              "priority from any object?",
         widget=widgets.RadioSelectHorizontal,
     )
     advice_5 = models.StringField(
         choices=Constants.rankings,
         doc="""suggested strategy for type 5""",
         label="What is your suggested strategy for a subject with preferences over objects as A C B but without "
-              "priority rights from any object?",
+              "priority from any object?",
         widget=widgets.RadioSelectHorizontal,
     )
 

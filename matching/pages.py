@@ -19,22 +19,22 @@ class FirstRanking(Page):
 
     def vars_for_template(self):
         if self.player.id_in_group == 1:
-            priority_right = "You receive priority rights from object C"
+            priority_right = "You receive priority from object C"
             preference = "C over A over B"
 
         elif self.player.id_in_group == 2:
-            priority_right = "You receive priority rights from object A"
+            priority_right = "You receive priority from object A"
             preference = "C over A over B"
 
         elif self.player.id_in_group == 3:
-            priority_right = "You receive priority rights from object B"
+            priority_right = "You receive priority from object B"
             preference = "C over B over A"
 
         elif self.player.id_in_group == 4:
-            priority_right = "You do not have priority rights from any object"
+            priority_right = "You do not have priority from any object"
             preference = "A over B over C"
         else:
-            priority_right = "You do not have priority rights from any object"
+            priority_right = "You do not have priority from any object"
             preference = "A over C over B"
 
         return dict(
@@ -124,22 +124,22 @@ class SecondRanking(Page):
 
     def vars_for_template(self):
         if self.player.id_in_group == 1:
-            priority_right = "You receive priority rights from object C"
+            priority_right = "You receive priority from object C"
             preference = "C over A over B"
 
         elif self.player.id_in_group == 2:
-            priority_right = "You receive priority rights from object A"
+            priority_right = "You receive priority from object A"
             preference = "C over A over B"
 
         elif self.player.id_in_group == 3:
-            priority_right = "You receive priority rights from object B"
+            priority_right = "You receive priority from object B"
             preference = "C over B over A"
 
         elif self.player.id_in_group == 4:
-            priority_right = "You do not have priority rights from any object"
+            priority_right = "You do not have priority from any object"
             preference = "A over B over C"
         else:
-            priority_right = "You do not have priority rights from any object"
+            priority_right = "You do not have priority from any object"
             preference = "A over C over B"
 
         return dict(
@@ -204,22 +204,22 @@ class AdviceGivingPage1(Page):
 
     def vars_for_template(self):
         if self.player.id_in_group == 1:
-            priority_right = "You receive priority rights from object C"
+            priority_right = "You receive priority from object C"
             preference = "C over A over B"
 
         elif self.player.id_in_group == 2:
-            priority_right = "You receive priority rights from object A"
+            priority_right = "You receive priority from object A"
             preference = "C over A over B"
 
         elif self.player.id_in_group == 3:
-            priority_right = "You receive priority rights from object B"
+            priority_right = "You receive priority from object B"
             preference = "C over B over A"
 
         elif self.player.id_in_group == 4:
-            priority_right = "You do not have priority rights from any object"
+            priority_right = "You do not have priority from any object"
             preference = "A over B over C"
         else:
-            priority_right = "You do not have priority rights from any object"
+            priority_right = "You do not have priority from any object"
             preference = "A over C over B"
 
         return dict(
@@ -235,22 +235,22 @@ class AdviceGivingPage2(Page):
 
     def vars_for_template(self):
         if self.player.id_in_group == 1:
-            priority_right = "You receive priority rights from object C"
+            priority_right = "You receive priority from object C"
             preference = "C over A over B"
 
         elif self.player.id_in_group == 2:
-            priority_right = "You receive priority rights from object A"
+            priority_right = "You receive priority from object A"
             preference = "C over A over B"
 
         elif self.player.id_in_group == 3:
-            priority_right = "You receive priority rights from object B"
+            priority_right = "You receive priority from object B"
             preference = "C over B over A"
 
         elif self.player.id_in_group == 4:
-            priority_right = "You do not have priority rights from any object"
+            priority_right = "You do not have priority from any object"
             preference = "A over B over C"
         else:
-            priority_right = "You do not have priority rights from any object"
+            priority_right = "You do not have priority from any object"
             preference = "A over C over B"
 
         return dict(
@@ -266,22 +266,22 @@ class AdviceGivingPage3(Page):
 
     def vars_for_template(self):
         if self.player.id_in_group == 1:
-            priority_right = "You receive priority rights from object C"
+            priority_right = "You receive priority from object C"
             preference = "C over A over B"
 
         elif self.player.id_in_group == 2:
-            priority_right = "You receive priority rights from object A"
+            priority_right = "You receive priority from object A"
             preference = "C over A over B"
 
         elif self.player.id_in_group == 3:
-            priority_right = "You receive priority rights from object B"
+            priority_right = "You receive priority from object B"
             preference = "C over B over A"
 
         elif self.player.id_in_group == 4:
-            priority_right = "You do not have priority rights from any object"
+            priority_right = "You do not have priority from any object"
             preference = "A over B over C"
         else:
-            priority_right = "You do not have priority rights from any object"
+            priority_right = "You do not have priority from any object"
             preference = "A over C over B"
 
         return dict(
@@ -297,22 +297,22 @@ class AdviceGivingPage4(Page):
 
     def vars_for_template(self):
         if self.player.id_in_group == 1:
-            priority_right = "You receive priority rights from object C"
+            priority_right = "You receive priority from object C"
             preference = "C over A over B"
 
         elif self.player.id_in_group == 2:
-            priority_right = "You receive priority rights from object A"
+            priority_right = "You receive priority from object A"
             preference = "C over A over B"
 
         elif self.player.id_in_group == 3:
-            priority_right = "You receive priority rights from object B"
+            priority_right = "You receive priority from object B"
             preference = "C over B over A"
 
         elif self.player.id_in_group == 4:
-            priority_right = "You do not have priority rights from any objects"
+            priority_right = "You do not have priority from any objects"
             preference = "A over B over C"
         else:
-            priority_right = "You do not have priority rights from any objects"
+            priority_right = "You do not have priority from any objects"
             preference = "A over C over B"
 
         return dict(
@@ -328,22 +328,22 @@ class AdviceGivingPage5(Page):
 
     def vars_for_template(self):
         if self.player.id_in_group == 1:
-            priority_right = "You receive priority rights from object C"
+            priority_right = "You receive priority from object C"
             preference = "C over A over B"
 
         elif self.player.id_in_group == 2:
-            priority_right = "You receive priority rights from object A"
+            priority_right = "You receive priority from object A"
             preference = "C over A over B"
 
         elif self.player.id_in_group == 3:
-            priority_right = "You receive priority rights from object B"
+            priority_right = "You receive priority from object B"
             preference = "C over B over A"
 
         elif self.player.id_in_group == 4:
-            priority_right = "You do not have priority rights from any object"
+            priority_right = "You do not have priority from any object"
             preference = "A over B over C"
         else:
-            priority_right = "You do not have priority rights from any object"
+            priority_right = "You do not have priority from any object"
             preference = "A over C over B"
 
         return dict(
