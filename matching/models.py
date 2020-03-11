@@ -347,10 +347,22 @@ class Group(BaseGroup):
 
         # Final payoff
         for i in range(0, 5):
-            if self.paying_round == 1:
-                players[i].final_payoff = payoff_r1[i]
+            if self.session.config['generation_number'] != 0:
+                if self.paying_round == 1:
+                    if players[i].num_adv == 0:
+                        players[i].final_payoff = payoff_r1[i]
+                    else:
+                        players[i].final_payoff = payoff_r1[i] - 1
+                else:
+                    if players[i].num_adv != 0:
+                        players[i].final_payoff = payoff_r2[i]
+                    else:
+                        players[i].final_payoff = payoff_r2[i] - 1
             else:
-                players[i].final_payoff = payoff_r2[i]
+                if self.paying_round == 1:
+                    players[i].final_payoff = payoff_r1[i]
+                else:
+                    players[i].final_payoff = payoff_r2[i]
 
             players[i].final_payoff_in_dollars = players[i].final_payoff * 0.8
 
@@ -466,6 +478,40 @@ class Group(BaseGroup):
         #         file.write(json.dumps(all_advice))
         # except IOError as e:
         #     print("Error writing json file: {}".format(e))
+
+
+    def lottery_payoff(self):
+        deciding_lottery = random.randint(1, 10)
+        players = self.get_players()
+        for i in range(0, 5):
+            lottery = [
+                players[i].ra_1,
+                players[i].ra_2,
+                players[i].ra_3,
+                players[i].ra_4,
+                players[i].ra_5,
+                players[i].ra_6,
+                players[i].ra_7,
+                players[i].ra_8,
+                players[i].ra_9,
+                players[i].ra_10,
+            ]
+
+            prob = random.random()
+            print(prob)
+
+            if "2.00 ECU" in lottery[deciding_lottery]:
+                if prob <= deciding_lottery/10.0:
+                    players[i].final_payoff = players[i].final_payoff + 2.00
+                else:
+                    players[i].final_payoff = players[i].final_payoff + 1.60
+            else:
+                if prob <= deciding_lottery/10.0:
+                    players[i].final_payoff = players[i].final_payoff + 3.85
+                else:
+                    players[i].final_payoff = players[i].final_payoff + 0.10
+
+            players[i].final_payoff_in_dollars = players[i].final_payoff * 0.8
 
 
 class Player(BasePlayer):
@@ -604,23 +650,6 @@ class Player(BasePlayer):
     )
     verbal_5 = models.LongStringField(
         label="What is your reasoning for your suggested strategy above?"
-    )
-
-    # For personal information
-    age = models.IntegerField(
-        label='What is your age?',
-        min=13, max=125)
-    gender = models.StringField(
-        choices=['Male', 'Female', 'Other'],
-        label='What is your gender?',
-        widget=widgets.RadioSelect)
-    grade = models.StringField(
-        choices=['Freshman', 'Sophomore', 'Junior', 'Senior'],
-        label='What class are you in?',
-        widget=widgets.RadioSelect,
-    )
-    major = models.StringField(
-        label='What is your major?'
     )
 
     # For cognitive reflection test

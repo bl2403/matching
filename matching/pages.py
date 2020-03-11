@@ -40,7 +40,9 @@ class FirstRanking(Page):
         return dict(
             preference_type=self.player.id_in_group,
             player_preference=preference,
-            player_priority_right=priority_right
+            player_priority_right=priority_right,
+            gen_num=self.session.config['generation_number'],
+            group_num=str(int(self.session.config['generation_number']) + 1)
         )
 
     def before_next_page(self):
@@ -110,7 +112,7 @@ class AdviceReceivingPage(Page):
             'third_verbal': self.player.third_verbal
         }
 
-    # timeout_seconds = 300
+    timeout_seconds = 300
 
 
 class SecondRanking(Page):
@@ -144,6 +146,7 @@ class SecondRanking(Page):
 
         return dict(
             gen_num=self.session.config['generation_number'],
+            group_num=str(int(self.session.config['generation_number']) + 1),
             preference_type=self.player.id_in_group,
             player_preference=preference,
             player_priority_right=priority_right,
@@ -389,12 +392,13 @@ class CognitiveReflectionTest(Page):
 
 class End(WaitPage):
     def after_all_players_arrive(self):
+        self.group.lottery_payoff()
         self.group.set_advice()
         self.group.simulation()
 
 
 page_sequence = [
-    Introduction,
+    # Introduction,
     FirstRanking,
     ResultsWaitPage1,
     AdviceAcceptance,
@@ -411,7 +415,6 @@ page_sequence = [
     AdviceGivingPage4,
     AdviceGivingPage5,
     Introduction3,
-    PersonalInfo,
     RAQuizPage,
     CognitiveReflectionTest,
     End,
