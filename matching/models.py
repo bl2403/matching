@@ -432,6 +432,13 @@ class Group(BaseGroup):
             self.get_player_by_id(i+1).average_welfare_before_advice = welfare_before_advice[i]/1000
             self.get_player_by_id(i+1).average_welfare_after_advice = welfare_after_advice[i]/1000
 
+            if welfare_before_advice[i] > welfare_after_advice[i]:
+                self.get_player_by_id(i+1).welfare_dummy = -1
+            elif welfare_before_advice[i] == welfare_after_advice[i]:
+                self.get_player_by_id(i+1).welfare_dummy = 0
+            else:
+                self.get_player_by_id(i+1).welfare_dummy = 1
+
     def set_advice(self):
         all_advice = {}
         for player_id in range(1, Constants.players_per_group + 1):
@@ -478,7 +485,6 @@ class Group(BaseGroup):
         #         file.write(json.dumps(all_advice))
         # except IOError as e:
         #     print("Error writing json file: {}".format(e))
-
 
     def lottery_payoff(self):
         deciding_lottery = random.randint(1, 10)
@@ -598,6 +604,7 @@ class Player(BasePlayer):
     # Simulation Results
     average_welfare_before_advice = models.FloatField()
     average_welfare_after_advice = models.FloatField()
+    welfare_dummy = models.IntegerField()
 
     # For advice giving
     advice_1 = models.StringField(
