@@ -398,7 +398,7 @@ class End(WaitPage):
 
 
 page_sequence = [
-    Introduction,
+    # Introduction,
     FirstRanking,
     ResultsWaitPage1,
     AdviceAcceptance,

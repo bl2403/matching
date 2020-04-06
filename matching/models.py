@@ -476,7 +476,6 @@ class Group(BaseGroup):
         response = client.put_object(Bucket=BUCKET, Body=json.dumps(all_advice), Key=FILE_TO_READ)
         print(response)
 
-
         # BASE_DIR = os.path.dirname(os.path.dirname(__file__))
         # file_name = 'generation_{}.json'.format(int(self.session.config['generation_number']))
         # generation_file = os.path.join(os.path.dirname(BASE_DIR), "matching", "advice", file_name)
@@ -610,35 +609,40 @@ class Player(BasePlayer):
     advice_1 = models.StringField(
         choices=Constants.rankings,
         doc="""suggested strategy for type 1""",
-        label="What is your suggested strategy for a subject with preferences over the objects as C A B and priority "
+        label="What is your suggested strategy for a subject with preferences over the objects as C over A over B and "
+              "priority "
               "from object C",
         widget=widgets.RadioSelectHorizontal,
     )
     advice_2 = models.StringField(
         choices=Constants.rankings,
         doc="""suggested strategy for type 2""",
-        label="What is your suggested strategy for a subject with preferences over the objects as C A B and priority "
+        label="What is your suggested strategy for a subject with preferences over the objects as C over A over B and "
+              "priority "
               "from object A",
         widget=widgets.RadioSelectHorizontal,
     )
     advice_3 = models.StringField(
         choices=Constants.rankings,
         doc="""suggested strategy for type 3""",
-        label="What is your suggested strategy for a subject with preferences over objects as C B A and priority "
+        label="What is your suggested strategy for a subject with preferences over objects as C over B over A and "
+              "priority "
               " from object B?",
         widget=widgets.RadioSelectHorizontal,
     )
     advice_4 = models.StringField(
         choices=Constants.rankings,
         doc="""suggested strategy for type 4""",
-        label="What is your suggested strategy for a subject with preferences over objects as A B C but without "
+        label="What is your suggested strategy for a subject with preferences over objects as A over B over C but "
+              "without "
               "priority from any object?",
         widget=widgets.RadioSelectHorizontal,
     )
     advice_5 = models.StringField(
         choices=Constants.rankings,
         doc="""suggested strategy for type 5""",
-        label="What is your suggested strategy for a subject with preferences over objects as A C B but without "
+        label="What is your suggested strategy for a subject with preferences over objects as A over C over B but "
+              "without "
               "priority from any object?",
         widget=widgets.RadioSelectHorizontal,
     )
