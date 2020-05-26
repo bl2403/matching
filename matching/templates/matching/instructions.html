@@ -1,11 +1,286 @@
 {% load otree %}
 
 <div class="card bg-light instructions">
-    <div class="card-body">
+
 
     <h3>
         Instructions
     </h3>
-    </div>
-    <img src="{% static 'matching/FirstRoundRanking.png' %}"/>
+
+    <p>
+        You are about to participate in an experiment in the economics of decision making. Russell Sage Foundation has
+    provided funds to conduct this lab session. If you follow the instructions carefully and make good decisions, you
+    may earn a considerable amount of money in addition to the $5 participation fee.
+    </p>
+    <p>
+        The currency used in this experiment is called ``Experimental Currency Unit" or ECU in short. For every 1 ECU
+        you earn, you will be given \$0.80 at the end of the experiment. Details of how you will make decisions will be
+        provided below.
+    </p>
+    <p>
+        Please abide by the following rules to ensure the experiments run in optimal conditions.
+    </p>
+    <ul>
+        <li>
+            Do not talk to other participant throughout the experiment.
+        </li>
+        <li>
+            Please turn off your cell phones and do not use any electronic device during the experiment
+        </li>
+        <li>
+            Read the instructions carefully. If you have any questions, feel free to ask at any point of the experiment.
+            Please do so by raising your hand and one of us will come to your desk and answer your questions.
+        </li>
+    </ul>
+    <h5>
+        General Structure of the Experiment
+    </h5>
+    <p>
+        As you can see, there are 5 subjects who will be participating in the experiment. At the very beginning of this
+        lab session, all subjects are assigned into types which we call Type 1, Type 2, Type 3, Type 4, and Type 5.
+        After you finish your decision-making, you will be replaced by five other subjects in the next experimental
+        session, and these five subjects will also be assigned into the five types. And they will make the same
+        decisions, after which they will be replaced another five subjects, so the experiment continues this way.
+    </p>
+    <p>
+        Now in this experiment, you will participate in five sets of decision problems, and we will explain the details
+        of these decision problems in order.
+    </p>
+
+    <h5>
+        Instructions for Decision Problem 1
+    </h5>
+    <p>
+        For all subjects in this session, there is a set of five objects grouped into three types which we call Object
+        A, Object B, and Object C. In particular, there is 1 units of Object A, 2 units of Object B, and 2 units of
+        Object C. The problem is to match each of the five subjects to one of the objects. We will explain how this
+        matching works in the following section. Simply put, the matching involves each subject stating his or her
+        ranking over objects and when this information is "inputted" into a "matching scheme", the scheme will
+        determine the matching.
+    </p>
+    <p>
+        The figure below shows an example of the computer screen when you are asked to submit your ranking over subjects.
+    </p>
+    <img src="{% static 'matching/FirstRoundRanking.png' %}" alt="Image" width="700" height="420"/>
+    <p>
+        As you can see from the figure on the screen, you will be given your preference type, including your preference
+        over the three types of objects. In this figure, the subject is of type X in Group 12 (Here we denote the type
+        by X, but in the experiment you will be told if you are of Type 1, 2, 3, 4, or 5). In terms of payoff, if you
+        are matched with your most preferred object, object C in this example, then you receive 24 ECU, while being
+        matched with your second and third favorite object, object A and B, will give you 16 ECU and 8 ECU, respectively.
+        Each subject will be matched to one and only one object. You will not be told the types or the object payoff of
+        any subjects other than yourself.
+    </p>
+    <p>
+        In addition to preferences, you will also be given priorities for certain objects. All subjects will receive the
+        same priority table, like the one seen at the bottom of the page seen above. These priorities are relevant if
+        more subjects want a kind of object more than there are units available. In that case, this object will be given
+        to subjects according to these priorities. If there is more of a particular kind of object than the number of
+        people who want that object, the priorities will not matter.
+    </p>
+    <p>
+        For example, in the table above, Type Z has priority over Object A. If Type X, Y, and Z all want Object A but
+        there are only 2 units of Object A, then Type Z will be given the object first and a lottery will be held to
+        determine whether Type X or Y will obtain the other unit of Object A (In the next section we will describe how
+        this lottery is run).
+    </p>
+    <h5>
+        The Matching Scheme
+    </h5>
+    <p>
+        In the matching scheme each subject is required to submit a ranking over the three objects. A ranking is simply
+        a list of objects that a subject states that she chooses first, second, or third, and the ranking must contain
+        all three objects. In other words, she cannot state object A is both her first and second choice. Notice that
+        this ranking can be different from your actual preference. For instance, in the figure above, the subject
+        prefers object C over A over B, but she is free to rank object A as her first choice and C as her second choice.
+    </p>
+    <p>
+        We will now describe how the matching scheme works. As you will see, the object you will be matched with depends
+        on the rankings you submit, the number of subjects wanting the various objects, the priorities of the subjects
+        wanting the same object, and the lottery used to break ties when more subjects with the same priority want the
+        same subject.
+    </p>
+    <p>
+        The matching mechanism has the following steps:
+    </p>
+    <p>
+        (Step 1) The computer will randomly generate a ranking of all subjects which will later serve as the only
+        tie-breaking lottery, if necessary.
+    </p>
+    <p>
+        (Step 2) The computer gathers all the rankings submitted by the subjects and then takes each subject's first
+        ranked choice and make an application for him or her to that object.
+    </p>
+    <p>
+        (Step 3) For each object, if the number of applicants is less than or equal to the available units of the object,
+        all applicants will be <b>temporarily</b> matched to that object. Otherwise, the object will be <b>
+        temporarily</b> matched to subjects by using their priority rankings from the highest to lowest until all
+        units are taken. If two applicants have the same priority ranking, then the tie-breaking lottery will be used
+        and the subjects with higher tie-breaking number will be admitted first. Low priority applicants or low
+        tie-breaking applicants in excess of the number of available units will be left unmatched <b>temporarily</b>.
+    </p>
+    <p>
+        (Step 4) If at the end of the first round all subjects are matched to objects, the temporary assignment outcome
+        will be finalized and the mechanism terminates. If there are any unmatched subjects, a second round starts where
+        all unmatched subjects are sent to their second ranked objects.
+    </p>
+    <p>
+        (Step 5) For each object that receives new applicants, the computer compares the number of its remaining units
+        with that of new applicants. If the remaining units are more than the number of new applicants, all new
+        applicants are <b>temporarily</b> matched to that object. Otherwise, these new applicants will be pooled
+        together with the subjects who are currently matched to that object from the previous round. Among these new
+        applicants and matched applicants, the object will be <b>temporarily</b> assigned to applicants again by using
+        their priority ranking and tie-breaking ranking from the highest to the lowest until all available units in the
+        object are exhausted. Note, it is possible that a subject was temporarily matched to the object in the previous
+        round but is left unmatched in this round, because his priority or tie-breaking lottery is not high enough and
+        he gets replaced by a new applicant with higher priority or tie-breaking number.
+    </p>
+    <p>
+        (Step 6) At the end of the second round, if all subjects are matched with a object, then the temporary matching
+        outcome will be finalized and the mechanism is terminated. However, if there are still unmatched subjects, then
+        a third round will start where all unmatched subjects are sent to their next ranked object.
+    </p>
+    <p>
+        (Step 7) This process is repeated until all subjects are matched with an object. Then the temporary matching
+        outcome finalizes and the matching mechanism terminates, and all subjects receive the object they were matched
+        with.
+    </p>
+    <p>
+        The detail of this matching scheme will still be available to you throughout relevant part of the experiment.
+    </p>
+
+    <h5>
+        Instructions for Decision Problem 2
+    </h5>
+    <p>
+        In a later part of the experiment, you will be asked to submit a ranking over the three objects again, with the
+        same preferences over the objects and the same priorities, with the same group of subjects, and under the same
+        matching scheme described above. However, you have the option to obtain advice from three sources. This part of
+        the experiment is only relevant to subjects who are NOT in the very first group of the entire experiment. If you
+        are in Group 1 of the entire experiment, you can ignore this section of the instruction. After ranking the three
+        types of objects for the first time, subjects in Group 1 will be asked to rank the three objects again
+        immediately.
+    </p>
+    <p>
+        There are 3 advice sources:
+    </p>
+    <ul>
+        <li>
+            Third-party advice with endorsement. Such advice is provided by people who are not directly participating in
+            the matching problem. The matching scheme described above is often used in matching middle school graduates
+            to public high schools in various cities across the world. The third-party advice used in this experiment
+            comes from school matching administrators such as the website of the Department of Education or school
+            counselors.
+        </li>
+        <li>
+            Own-type advice. Such advice is given by the subject of the same preference type as you in the previous
+            group.
+        </li>
+        <li>
+            ther-type advice. Such advice is given by subjects of a different preference type from you in the previous
+            group. Because there are four subjects who differ from you, the computer will randomly choose advice from
+            one particular type with equal probability. For example, if you are a type 1 subject, then the other-type
+            inter-generational advice will be randomly selected with equal probability from type 2 to type 5's advice to
+            a type 1 subject. Note that though advice-givers may be of a different type from you, they are asked to put
+            themselves in your position when giving you advice. In addition, part of your advisors' payoff is dependent
+            upon your payoff from object matching. In other words, the better object you are matched to, the higher
+            their final payoff is.
+        </li>
+    </ul>
+    <p>
+        Having known these advice sources, you will then be asked whether you want to receive any advice or not. If you
+        reject advice reception, then this part of the experiment ends and you will receive no advice the second time
+        you rank the three objects. Should you choose to receive advice, you will then answer a couple questions:
+    </p>
+    <img src="{% static 'matching/AdviceValuationElicitation.png' %}" alt="Image" width="850" height="420"/>
+    <p>
+        Based on your answer to these two questions, the computer will randomly select, with equal probability, the
+        number of advice sources(1, 2, or all 3) and the types of advice sources for you. For example, suppose you
+        choose to receive advice. Suppose further you chose "own-type advice'" for the first question, and both
+        "own-type advice" and "other-type advice" for the second question. Then the computer would randomly choose the
+        number of advice you receive, say 2. Then you will receive one piece of own-type advice and one piece of
+        other-type advice from the previous session, because you answered that if you were to receive 2 pieces of advice,
+        you would prefer own-type advice and other-type advice.
+    </p>
+    <p>
+        <b>Advice is costly</b>: It costs you 1 ECU no matter how many pieces of advice you receive. Your final payoff
+        from matching will be at least 8 ECU (if you are matched to your third preferred object). In addition to your
+        payoff from the game, you will later be asked to give advice, through which you can increase your payoff even
+        more. We estimate that on average subjects will gain about 25 ECU from the experiment, which is equivalent to
+        20 U.S. dollars. Obviously, if you reject advice, you do not pay the 1 ECU for advice.
+    </p>
+    <h5>
+        Instructions for Decision Problem 3
+    </h5>
+    <p>
+        Before participating in the second round, you will first read the advice assigned to you according to your
+        valuation of advice in the previous stage. A typical page of advice looks like the figure on the screen (the
+        verbal reasoning in the figure is A11 and A51, but in the real experiment, it will be a paragraph written by
+        your predecessors). You will have five minutes to read through the advice. When you are ready, click the "Next"
+        button.
+    </p>
+    <img src="{% static 'matching/AdviceReception.png' %}" alt="Image" width="900" height="420"/>
+    <p>
+        Then you will be asked to submit a ranking of the three objects again, just as you did in the previous part of
+        the experiment. The advice you received and the detail of the matching scheme will be available as you make your
+        decision.
+    </p>
+    <p>
+        When all subjects in the group submit their second round ranking, you will receive your matching outcomes for
+        both rounds. Your final payoff from matching is determined in the following way: The payoff relevant round will
+        be randomly selected from the first and second matching round. If you are matched with your most preferred,
+        second or third most preferred object in the paying round, you will receive 24, 16, and 8 ECU, respectively.
+        Therefore, you should submit the rankings of objects to the best of your ability in both rounds. A typical
+        matching result page will look like the following figure.
+    </p>
+
+    <img src="{% static 'matching/Result.png' %}" alt="Image" width="520" height="220"/>
+
+    <p>
+        When ready, you can click the "Next" button to start the next set of decision problems.
+    </p>
+    <h5>
+        Instruction for Decision Problem 4
+    </h5>
+    <p>
+        In this part of the experiment, you will be asked to provide advice to several subjects of other preference
+        types in the group that participates after you. You will be given the advice receiver's preference over the
+        objects and asked to give suggested ranking and verbal reasoning to support your advice. Please keep in mind
+        that these preference types are hypothetical; in other words, they may or may not actually exist in the
+        experiment. You will be given preferences different from that of yours, so please note that when you give advice
+        to a particular type of subject, <b>you must put yourself in their position to give advice</b>. Do
+        not simply repeat what you did in the experiment. Consider what you would have done if you were of that
+        particular preference type. A typical advice giving page looks like the following figure.
+    </p>
+    <p>
+        As you can see, at the top of the page, your preference and priority will be repeated. Then your advisee's
+        preferences over the objects and priorities will be provided. And your task is to choose what ranking you
+        suggested him or her to take and provide verbal reasoning for it. Your reasoning should be concise and pertinent.
+    </p>
+    <p>
+        Finally, your payoff from advice giving is 1/2 of the payoff of the subject who receives your advice.
+        If multiple subjects receive your advice, your payoff will be determined by randomly selecting one from such
+        subjects. Therefore, you should provide advice to all your advisees to the best of your ability.
+    </p>
+    <h5>
+        Instruction for Decision Problem 5
+    </h5>
+    <p>
+        This is the last part of the experiment and is totally different from the previous problems. There are two tasks
+        you need to complete. The first task is for you to choose the more preferred options from the ten pairs of
+        lotteries. A typical lottery comparison page looks like the following figure.
+    </p>
+    <img src="{% static 'matching/LotteryComparisons.png' %}" alt="Image" width="620" height="900"/>
+    <p>
+        A lottery is in the following form: you may have probability p of receiving m ECU and probability 1-p of
+        receiving n ECU. You will make ten choices and for each choice you only need to indicate which lottery you
+        prefer more. Once you have made all ten decisions, click the "Next" button. Your final payoff is also dependent
+        on your decisions here: Each lottery pair has equal probability of being selected and the computer will run your
+        more preferred lottery in that pair to determine your payoff from this decision problem.
+    </p>
+    <p>
+        The second task contains three quiz questions commonly used in economics experiments on decision making. You
+        should answer according to the best of your ability.
+    </p>
+
 </div>
