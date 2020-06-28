@@ -26,6 +26,7 @@ class Constants(BaseConstants):
     num_rounds = 1
 
     instructions_template = 'matching/instructions.html'
+    instructions_template_for_gen_0 = 'matching/instructions_for_gen_0.html'
     instructions_template_1 = 'matching/instructions1.html'
     instructions_template_2 = 'matching/instructions2.html'
     instructions_template_3 = 'matching/instructions3.html'

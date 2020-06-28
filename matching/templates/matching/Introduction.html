@@ -4,7 +4,13 @@
 {% block title %}Introduction{% endblock %}
 
 {% block content %}
-{% include Constants.instructions_template %}
+
+{% if gen_num == '0' %}
+    {% include Constants.instructions_template_for_gen_0 %}
+
+{% else %}
+    {% include Constants.instructions_template %}
+{% endif %}
 
 {% next_button %}
 {% endblock %}

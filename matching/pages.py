@@ -4,7 +4,10 @@ from .models import Constants
 
 
 class Introduction(Page):
-    pass
+    def vars_for_template(self):
+        return dict(
+            gen_num=self.session.config['generation_number']
+        )
 
 
 class FirstRanking(Page):
