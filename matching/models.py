@@ -98,6 +98,7 @@ class Constants(BaseConstants):
     high_payoff = 24
     medium_payoff = 16
     low_payoff = 8
+    participation_fee = 5
 
 
 class Subsession(BaseSubsession):
