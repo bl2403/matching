@@ -95,10 +95,9 @@ class Constants(BaseConstants):
 
     lottery = [1, 2, 3, 4, 5]
 
-    high_payoff = 24
-    medium_payoff = 16
-    low_payoff = 8
-    participation_fee = 5
+    high_payoff = 24.0
+    medium_payoff = 16.0
+    low_payoff = 8.0
 
 
 class Subsession(BaseSubsession):
@@ -349,7 +348,7 @@ class Group(BaseGroup):
 
         # Final payoff
         for i in range(0, 5):
-            if self.session.config['generation_number'] != 0:
+            if self.session.config['generation_number'] != '0':
                 if self.paying_round == 1:
                     if players[i].num_adv == 0:
                         players[i].final_payoff = payoff_r1[i]
