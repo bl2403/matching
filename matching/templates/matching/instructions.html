@@ -43,7 +43,7 @@
         lab session, all subjects are assigned into types which we call Type 1, Type 2, Type 3, Type 4, and Type 5.
         After you finish your decision-making, you will be replaced by five other subjects in the next experimental
         session, and these five subjects will also be assigned into the five types. And they will make the same
-        decisions, after which they will be replaced another five subjects, so the experiment continues this way.
+        decisions, after which they will be replaced by another five subjects, so the experiment continues this way.
     </p>
     <p>
         Now in this experiment, you will participate in five sets of decision problems, and we will explain the details
@@ -55,14 +55,15 @@
     </h5>
     <p>
         For all subjects in this session, there is a set of five objects grouped into three types which we call Object
-        A, Object B, and Object C. In particular, there is 1 units of Object A, 2 units of Object B, and 2 units of
+        A, Object B, and Object C. In particular, there is 1 unit of Object A, 2 units of Object B, and 2 units of
         Object C. The problem is to match each of the five subjects to one of the objects. We will explain how this
         matching works in the following section. Simply put, the matching involves each subject stating his or her
         ranking over objects and when this information is "inputted" into a "matching scheme", the scheme will
         determine the matching.
     </p>
     <p>
-        The figure below shows an example of the computer screen when you are asked to submit your ranking over subjects.
+        The figure below shows an example of the computer screen when you are asked to submit your ranking over the
+        objects.
     </p>
     <img src="{% static 'matching/FirstRoundRanking.png' %}" alt="Image" width="700" height="420"/>
     <p>
@@ -101,7 +102,7 @@
         We will now describe how the matching scheme works. As you will see, the object you will be matched with depends
         on the rankings you submit, the number of subjects wanting the various objects, the priorities of the subjects
         wanting the same object, and the lottery used to break ties when more subjects with the same priority want the
-        same subject.
+        same object.
     </p>
     <p>
         The matching mechanism has the following steps:
@@ -139,7 +140,7 @@
         he gets replaced by a new applicant with higher priority or tie-breaking number.
     </p>
     <p>
-        (Step 6) At the end of the second round, if all subjects are matched with a object, then the temporary matching
+        (Step 6) At the end of the second round, if all subjects are matched with an object, then the temporary matching
         outcome will be finalized and the mechanism is terminated. However, if there are still unmatched subjects, then
         a third round will start where all unmatched subjects are sent to their next ranked object.
     </p>
@@ -247,7 +248,8 @@
         types in the group that participates after you. You will be given the advice receiver's preference over the
         objects and asked to give suggested ranking and verbal reasoning to support your advice. Please keep in mind
         that these preference types are hypothetical; in other words, they may or may not actually exist in the
-        experiment. You will be given preferences different from that of yours, so please note that when you give advice
+        experiment. However, you can be ensured that at least one preference type actually exists in the experiment.
+        You will be given preferences different from that of yours, so please note that when you give advice
         to a particular type of subject, <b>you must put yourself in their position to give advice</b>. Do
         not simply repeat what you did in the experiment. Consider what you would have done if you were of that
         particular preference type. A typical advice giving page looks like the following figure.
@@ -256,7 +258,11 @@
     <p>
         As you can see, at the top of the page, your preference and priority will be repeated. Then your advisee's
         preferences over the objects and priorities will be provided. And your task is to choose what ranking you
-        suggested him or her to take and provide verbal reasoning for it. Your reasoning should be concise and pertinent.
+        suggest him or her to take and provide verbal reasoning for it. Your reasoning should be concise and
+        pertinent. Also please note that your advisee with a particular preference type can only see your advice to him
+        or her. In other words, he or she cannot see what advice you give to other types, so please do not write
+        advice such as "The same as the previous advice" or "Same as above". Your advice receiver would not
+        understand what you mean.
     </p>
     <p>
         Finally, your payoff from advice giving is 1/2 of the payoff of the subject who receives your advice.
