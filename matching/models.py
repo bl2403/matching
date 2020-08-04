@@ -156,6 +156,7 @@ class Group(BaseGroup):
         # Tie breaker
         lottery = [1, 2, 3, 4, 5]
         random.shuffle(lottery)
+        print(lottery)
 
         temp_match = [0, 0, 0, 0, 0]  # Initial temporary match
         status = [1, 1, 1, 1, 1]  # The current application status of the players. 1 if considered by 1st choice, etc.
@@ -180,6 +181,7 @@ class Group(BaseGroup):
                 pairs.sort()
                 # order of acceptance
                 new_apps = [pairs[m][1] for m in range(0, len(apps))]
+                print(new_apps)
 
                 # If school does not reach full capacity
                 if len(apps) <= Constants.School_Capacity[i]:
@@ -193,12 +195,14 @@ class Group(BaseGroup):
                         # The student with priority right is first accepted
                         temp_match[Constants.Student_Priority_Rights[i]] = Constants.Schools[i]
                         new_apps.remove(Constants.Student_Priority_Rights[i])
+                        print(new_apps)
                         # Students without priority but high in ranking gets accepted
                         for j in new_apps[:Constants.School_Capacity[i] - 1]:
                             temp_match[j] = Constants.Schools[i]
                         # The rest is is rejected
                         for j in new_apps[Constants.School_Capacity[i] - 1:]:
                             status[j] = status[j] + 1
+                            temp_match[j] = 0
 
                     # Case 2: Student with priority does not apply
                     else:
@@ -208,6 +212,9 @@ class Group(BaseGroup):
                         # The rest are rejected
                         for j in new_apps[Constants.School_Capacity[i]:]:
                             status[j] = status[j] + 1
+                            temp_match[j] = 0
+            print(temp_match)
+            print(status)
 
         return temp_match
 
@@ -355,7 +362,7 @@ class Group(BaseGroup):
                     else:
                         players[i].final_payoff = payoff_r1[i] - 1
                 else:
-                    if players[i].num_adv != 0:
+                    if players[i].num_adv == 0:
                         players[i].final_payoff = payoff_r2[i]
                     else:
                         players[i].final_payoff = payoff_r2[i] - 1
@@ -486,38 +493,38 @@ class Group(BaseGroup):
         # except IOError as e:
         #     print("Error writing json file: {}".format(e))
 
-    def lottery_payoff(self):
-        deciding_lottery = random.randint(1, 10)
-        players = self.get_players()
-        for i in range(0, 5):
-            lottery = [
-                players[i].ra_1,
-                players[i].ra_2,
-                players[i].ra_3,
-                players[i].ra_4,
-                players[i].ra_5,
-                players[i].ra_6,
-                players[i].ra_7,
-                players[i].ra_8,
-                players[i].ra_9,
-                players[i].ra_10,
-            ]
-
-            prob = random.random()
-            print(prob)
-
-            if "2.00 ECU" in lottery[deciding_lottery]:
-                if prob <= deciding_lottery/10.0:
-                    players[i].final_payoff = players[i].final_payoff + 2.00
-                else:
-                    players[i].final_payoff = players[i].final_payoff + 1.60
-            else:
-                if prob <= deciding_lottery/10.0:
-                    players[i].final_payoff = players[i].final_payoff + 3.85
-                else:
-                    players[i].final_payoff = players[i].final_payoff + 0.10
-
-            players[i].final_payoff_in_dollars = players[i].final_payoff * 0.8
+    # def lottery_payoff(self):
+    #     deciding_lottery = random.randint(1, 10)
+    #     players = self.get_players()
+    #     for i in range(0, 5):
+    #         lottery = [
+    #             players[i].ra_1,
+    #             players[i].ra_2,
+    #             players[i].ra_3,
+    #             players[i].ra_4,
+    #             players[i].ra_5,
+    #             players[i].ra_6,
+    #             players[i].ra_7,
+    #             players[i].ra_8,
+    #             players[i].ra_9,
+    #             players[i].ra_10,
+    #         ]
+    #
+    #         prob = random.random()
+    #         print(prob)
+    #
+    #         if "2.00 ECU" in lottery[deciding_lottery]:
+    #             if prob <= deciding_lottery/10.0:
+    #                 players[i].final_payoff = players[i].final_payoff + 2.00
+    #             else:
+    #                 players[i].final_payoff = players[i].final_payoff + 1.60
+    #         else:
+    #             if prob <= deciding_lottery/10.0:
+    #                 players[i].final_payoff = players[i].final_payoff + 3.85
+    #             else:
+    #                 players[i].final_payoff = players[i].final_payoff + 0.10
+    #
+    #         players[i].final_payoff_in_dollars = players[i].final_payoff * 0.8
 
 
 class Player(BasePlayer):
